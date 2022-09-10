@@ -1,0 +1,5 @@
+wordpress-*
+.DS_Store
+*.cache
+bin
+vendor
