@@ -3,3 +3,5 @@ wordpress-*
 *.cache
 bin
 vendor
+db
+*.zip

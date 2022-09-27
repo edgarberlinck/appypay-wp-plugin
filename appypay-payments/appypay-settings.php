@@ -23,15 +23,28 @@ return array(
 				'type'        => 'text',
 				'desc_tip'    => true,
 				'description' => __( 'Descrição que o usuário vê durante o checkout.', 'woocommerce' ),
-				'default'     => __( 'Ao escolher pagar com o Multicaixa Express como forma de pagamento, você finalizará
-				 o seu pagamento com a sua Carteira MCXE instalada em seu telemóvel para escanear o código
-				  qr e autorizar o pagamento.', 'mcxe' )
+				'default'     => __( 'Ao escolher pagar com Multicaixa Express, você finalizará o seu pagamento com 
+				o aplicativo Multicaixa Express presente no seu telefone.', 'appypay-pagamentos' )
 			),
-			'acess_token' => array(
-				'title' => __( 'Chave Secreta*', 'woocommerce' ),
+			'client_secret' => array(
+				'title' => __( 'Appy pay client secret*', 'woocommerce' ),
 				'type' => 'text',
-				'description' => __( 'Está disponível no portal da Yellen', 'woocommerce' ),
+				'description' => __( 'Disponibilizado pela Appypay', 'woocommerce' ),
 				'desc_tip'      => true
+			),
+			'client_id' => array(
+				'title' => __('client_id', 'woocomemrce'),
+				'type' => 'text',
+				'desc_tip' => true,
+				'description' => __('Disponibilizado pela Appypay', 'woocommerce'),
+				'default' => __('', 'appypay-pagamentos')
+			),
+			'resource'=> array(
+				'title' => __('resource', 'woocomemrce'),
+				'type' => 'text',
+				'desc_tip' => true,
+				'description' => __('Disponibilizado pela Appypay', 'woocommerce'),
+				'default' => __('', 'appypay-pagamentos')
 			),
 			'terminal' => array(
 				'title' => __( 'Terminal de pagamento', 'woocommerce' ),
@@ -46,12 +59,12 @@ return array(
 				'default' => 'yes'
 			),
 			'mobile'   => array(
-                'title'       => __( 'Mobile', 'woocommerce' ),
-                'type'        => 'select',
+        'title'       => __( 'Mobile', 'woocommerce' ),
+        'type'        => 'select',
 				'description' => __( 'Autorização ou Compra a um tempo', 'woocommerce' ),
-                'options'     => array(
-                    'AUTHORIZATION' => 'Autorização',
-                    'PAYMENT'  => 'Pagamento a um tempo'
-                )
-            )
+        'options'     => array(
+           'AUTHORIZATION' => 'Autorização',
+           'PAYMENT'  => 'Pagamento a um tempo'
+          )
+        )
 		);
