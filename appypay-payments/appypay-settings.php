@@ -26,6 +26,12 @@ return array(
 				'default'     => __( 'Ao escolher pagar com Multicaixa Express, você finalizará o seu pagamento com 
 				o aplicativo Multicaixa Express presente no seu telefone.', 'appypay-pagamentos' )
 			),
+			'application_id' => array(
+				'title' => __( 'Application Id*', 'woocommerce' ),
+				'type' => 'text',
+				'description' => __( 'Disponibilizado pela Appypay', 'woocommerce' ),
+				'desc_tip' => true
+			),
 			'client_secret' => array(
 				'title' => __( 'Appy pay client secret*', 'woocommerce' ),
 				'type' => 'text',

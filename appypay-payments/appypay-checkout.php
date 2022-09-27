@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Template Name: JAJAMCXECheckout
+ * Template Name: AppyPayCheckout
  */
  ?>
  
@@ -23,10 +23,13 @@
 
 
 <script>
+    // TODO: Heads up to this code.
     window.addEventListener('message', receiveMessage, false);
+    
     function receiveMessage(event) {
         console.log('Received from GPO: ', event.data);
         console.log('Received from GPO: ', event.origin);
+        // TODO: Not this website anymore. Check the webhook
         var destin = "https://yellen-api.herokuapp.com/v1/mcxe_verify/".concat(event.data);
         console.log(destin);
         if (!event.origin.includes('emis.co.ao')) { return; }

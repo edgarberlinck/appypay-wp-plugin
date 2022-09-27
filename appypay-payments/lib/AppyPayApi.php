@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-Class J2PME_McxeCheckout {
+Class AppyPayApi {
 	
 	private $api_endpoint;
 	private $test_mode;
@@ -18,8 +18,9 @@ Class J2PME_McxeCheckout {
 	private $resource;
 	private $expected_http_code;
 	private $expected_auth_http_code;
+	private $api_version;
 
-	function __construct($client_id, $client_secret, $resource ,$test_mode)
+	function __construct($client_id, $client_secret, $resource, $test_mode)
 	{
 		$this->client_id = $client_id;
 		$this->client_secret = $client_secret;
@@ -27,11 +28,12 @@ Class J2PME_McxeCheckout {
 		$this->test_mode =  $test_mode;
 		$this->expected_http_code = 201;
 		$this->expected_auth_http_code = 200;
-
+		$this->api_version = '1.2';
+		
 		$this->auth_endpoint = 'https://login.microsoftonline.com/appypaydev.onmicrosoft.com/oauth2/token';
 
 		if ($this->test_mode == "yes")
-			$this->api_endpoint  = "https://app-appypay-web-dev.azurewebsites.net";
+			$this->api_endpoint  = "https://app-appypay-api-tst.azurewebsites.net";
 		else
 			$this->api_endpoint  = "https://appypay.co.ao";
 		
@@ -94,6 +96,7 @@ Class J2PME_McxeCheckout {
 
 		if ($auth_response['success']) {
 			// TODO: enviar request para pagamento
+			
 		} else {
 			return array(
 				'success' => false,
