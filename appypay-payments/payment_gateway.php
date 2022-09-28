@@ -32,9 +32,7 @@ Class Payment_Gateway extends WC_Payment_Gateway
 	public function process_payment($orderId)
 	{
 		$this->add_checkout_page();
-		// include_once "lib/AppyPayApi.php";
 		$order = new WC_Order( $orderId );
-
 		// Appypay widgets variables
 		$amoumt = $this->get_order_total();
 		$description = "Order id ".$orderId;
@@ -69,6 +67,7 @@ Class Payment_Gateway extends WC_Payment_Gateway
 		}
 	}
 
+	// This is not working properly.
 	public function add_checkout_page()
 	{
 		$page_title = 'appypay-checkout';
