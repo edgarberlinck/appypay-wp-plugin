@@ -16,7 +16,7 @@ return array(
 				'type' => 'text',
 				'description' => __( 'Descrição que o usuário vê durante o checkout.', 'woocommerce' ),
 				'default' => __( 'Pagamento com Multixaixa Express', 'woocommerce' ),
-				'desc_tip'      => true
+				'desc_tip' => true
 			),
 			'description' => array(
 				'title'       => __( 'Description', 'woocommerce' ),
@@ -32,31 +32,11 @@ return array(
 				'description' => __( 'Disponibilizado pela Appypay', 'woocommerce' ),
 				'desc_tip' => true
 			),
-			'client_secret' => array(
-				'title' => __( 'Appy pay client secret*', 'woocommerce' ),
-				'type' => 'text',
-				'description' => __( 'Disponibilizado pela Appypay', 'woocommerce' ),
-				'desc_tip'      => true
-			),
-			'client_id' => array(
-				'title' => __('client_id', 'woocomemrce'),
-				'type' => 'text',
-				'desc_tip' => true,
-				'description' => __('Disponibilizado pela Appypay', 'woocommerce'),
-				'default' => __('', 'appypay-pagamentos')
-			),
-			'resource'=> array(
-				'title' => __('resource', 'woocomemrce'),
-				'type' => 'text',
-				'desc_tip' => true,
-				'description' => __('Disponibilizado pela Appypay', 'woocommerce'),
-				'default' => __('', 'appypay-pagamentos')
-			),
-			'terminal' => array(
-				'title' => __( 'Terminal de pagamento', 'woocommerce' ),
-				'type' => 'text',
-				'description' => __( 'Está disponível no portal do GPO', 'woocommerce' ),
-				'desc_tip'      => true
+			'redirect_to' => array(
+				'title'       => __( 'Redirect to', 'woocommerce' ),
+				'type'        => 'text',
+				'desc_tip'    => true,
+				'description' => 'URL que o Widget vai nos redirecionar apoós o pagamento',
 			),
 			'testmode' => array(
 				'title' => __( 'Enable/Disable', 'woocommerce' ),
@@ -64,13 +44,4 @@ return array(
 				'label' => __( 'Selecionar caso esteja a usar o ambiente de teste', 'Express' ),
 				'default' => 'yes'
 			),
-			'mobile'   => array(
-        'title'       => __( 'Mobile', 'woocommerce' ),
-        'type'        => 'select',
-				'description' => __( 'Autorização ou Compra a um tempo', 'woocommerce' ),
-        'options'     => array(
-           'AUTHORIZATION' => 'Autorização',
-           'PAYMENT'  => 'Pagamento a um tempo'
-          )
-        )
 		);

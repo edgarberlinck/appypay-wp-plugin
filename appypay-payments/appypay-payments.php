@@ -63,18 +63,18 @@
 			return $methods;
 		}
 
-		add_action( 'rest_api_init', 'register_custom_endpoints' );
+		// add_action( 'rest_api_init', 'register_custom_endpoints' );
 
-		function register_custom_endpoints(){
-			// Registering the payment api callback. It's executed after the payment
-			register_rest_route(
-					'callback/', // Namespace
-					'payment', // Endpoint
-					array(
-							'methods'  => 'POST',
-							'callback' => 'process_payment_response'
-					)
-			);
+		// function register_custom_endpoints(){
+		// 	// Registering the payment api callback. It's executed after the payment
+		// 	register_rest_route(
+		// 			'callback/', // Namespace
+		// 			'payment', // Endpoint
+		// 			array(
+		// 					'methods'  => 'POST',
+		// 					'callback' => 'process_payment_response'
+		// 			)
+		// 	);
 			// Legacy from other plugin. Not sure if it's necessary.
 			// register_rest_route(
 			// 		'verify/', // Namespace
@@ -107,42 +107,42 @@
 				
 		// }
 
-		function process_payment_response( $request_data ) {
-				$data = array();
-				// TODO: I must process the API return from AppyPay.
-				$parameters = $request_data->get_params();
+		// function process_payment_response( $request_data ) {
+		// 		$data = array();
+		// 		// TODO: I must process the API return from AppyPay.
+		// 		$parameters = $request_data->get_params();
 				
-				$pedido   = $parameters['merchantReferenceNumber'];
-				$estado = $parameters['status'];
-				$request_id_gpo = $parameters['id'];
+		// 		$pedido   = $parameters['merchantReferenceNumber'];
+		// 		$estado = $parameters['status'];
+		// 		$request_id_gpo = $parameters['id'];
 				
-				if ( isset($pedido) && isset($estado) ) {
+		// 		if ( isset($pedido) && isset($estado) ) {
 						
-					$order_id = $pedido;
-					$order = new WC_Order( $order_id );
+		// 			$order_id = $pedido;
+		// 			$order = new WC_Order( $order_id );
 	
-				if($order)
-				{
-					if($estado == "ACCEPTED"){
-						$order->payment_complete($order_id);
-					}
-					else{
-						$order->update_status('failed', 'Pagamento não completado!');
-						$order->save();
-					}
-					delete_post_meta($order_id, 'request_id_gpo');
-					delete_post_meta($order_id, 'request_status_gpo');
+		// 		if($order)
+		// 		{
+		// 			if($estado == "ACCEPTED"){
+		// 				$order->payment_complete($order_id);
+		// 			}
+		// 			else{
+		// 				$order->update_status('failed', 'Pagamento não completado!');
+		// 				$order->save();
+		// 			}
+		// 			delete_post_meta($order_id, 'request_id_gpo');
+		// 			delete_post_meta($order_id, 'request_status_gpo');
 					
-					add_post_meta( $order_id, 'request_id_gpo', $request_id_gpo);
-					add_post_meta( $order_id, 'request_status_gpo', $estado);
+		// 			add_post_meta( $order_id, 'request_id_gpo', $request_id_gpo);
+		// 			add_post_meta( $order_id, 'request_status_gpo', $estado);
 						
-				}else
-					logd("Order not found with order id $order_id");
+		// 		}else
+		// 			logd("Order not found with order id $order_id");
 								
-				}
+		// 		}
 						
-				return $data;
-		}
+		// 		return $data;
+		// }
 	
-	}
+	// }
 ?>
