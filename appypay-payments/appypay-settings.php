@@ -37,6 +37,7 @@ return array(
 				'type'        => 'text',
 				'desc_tip'    => true,
 				'description' => 'URL que o Widget vai nos redirecionar apoós o pagamento',
+				'default' => '/appypay-verify.php'
 			),
 			'testmode' => array(
 				'title' => __( 'Enable/Disable', 'woocommerce' ),

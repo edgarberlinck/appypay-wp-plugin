@@ -18,11 +18,12 @@ Class Payment_Gateway extends WC_Payment_Gateway
 		$this->method_description = "Pagamento Online com Multicaixa Express";
 		$this->init_form_fields();
 		$this->init_settings();
-		$this->title = "Multicaixa Express";
-		$this->description = "Pagamento Online com Multicaixa Express";
-		$this->redirectTo =  get_site_url() . '/appypay-verify.php'; //$this->get_option('redirect_to');
-		$this->application_id = 'GPO_5D7A07BC-24EB-4CC7-8218-109E61C62093'; //$this->get_option('application_id');
+		$this->title = $this->get_option('title');
+		$this->description = $this->get_option('description');
+		$this->redirectTo =  get_site_url() . $this->get_option('redirect_to');
+		$this->application_id = $this->get_option('application_id');
 		$this->testmode	= $this->get_option( 'testmode' );
+
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
   }
 	
@@ -38,6 +39,8 @@ Class Payment_Gateway extends WC_Payment_Gateway
 		$this->move_verify_file_to_themes_dir();
 
 		$order = new WC_Order( $orderId );
+		$order->update_status('on-hold', __( 'Awaiting appypay response', 'woocommerce' ));
+
 		// Appypay widgets variables
 		$amoumt = $this->get_order_total();
 		$description = "Order id ".$orderId;
@@ -50,12 +53,13 @@ Class Payment_Gateway extends WC_Payment_Gateway
     $order_item = $order->get_items();
 
 		$qs = array(
+			'orderId' => $orderId,
 			'amount' => $amoumt,
 			'description' => $description,
 			'referenceNumber' => $referenceNumber,
 			'paymentMethod' => $paymentMethod,
 			'lang' => $lang,
-			'redirectURI' => $redirectURI
+			'redirectURI' => $redirectURI . '?order=' .base64_encode(serialize($order))
 		);
 
 		return array(

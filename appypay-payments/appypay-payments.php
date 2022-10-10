@@ -27,7 +27,7 @@
 
 	// Add settings link on plugin page
 	function plugin_settings_link($links) { 
-		$settings_link = '<a href="admin.php?page=wc-settings&tab=checkout&section=appypay-pagamentos">Settings</a>'; 
+		$settings_link = '<a href="admin.php?page=wc-settings&tab=checkout&section=appypay">Settings</a>'; 
 		array_unshift($links, $settings_link); 
 		return $links; 
 	}
