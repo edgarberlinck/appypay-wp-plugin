@@ -55,6 +55,57 @@
 			include "payment_gateway.php";
 		}
 
+		# registering the webhook actions 
+		function add_appypay_response_handler ($topic_hooks) {
+			$new_hooks = array(
+				'order.appypay_response' => array(
+					'appypay_response_handler',
+				),
+			);
+			
+			return array_merge( $topic_hooks, $new_hooks );
+		}
+		add_filter( 'woocommerce_webhook_topic_hooks', 'add_appypay_response_handler' );
+
+		function add_appypay_response_events( $topic_events ) {
+			$new_events = array('appypay_response');
+		
+			return array_merge( $topic_events, $new_events );
+		}
+		add_filter( 'woocommerce_valid_webhook_events', 'add_appypay_response_events' );
+
+		function add_new_appypay_webhook_topics( $topics ) {
+			$new_topics = array( 
+				'order.appypay_response' => __( 'Appypay Response', 'woocommerce' ),
+				);
+		
+			return array_merge( $topics, $new_topics );
+		}
+		add_filter( 'woocommerce_webhook_topics', 'add_new_appypay_webhook_topics' );
+
+		# Register a route to your webhook
+		add_action('rest_api_init', function () {
+			register_rest_route( 'webhook/v1', 'handle-response',array(
+				'methods'  => 'POST',
+				'callback' => 'handle_appypay_request'
+			));
+		});
+
+		function handle_appypay_request($request) {
+			$orderId = $request['merchantTransactionId'];
+			$status = $request['responseStatus']['successful'];
+			$message = $request['responseStatus']['message'];
+			
+			$order_factory = new WC_Order_Factory();
+			$order = $order_factory->get_order($orderId);
+			if ($status) {
+				$order->payment_complete();
+			} else {
+				$order->set_status('failed', $message);
+			}
+			$order->save();
+			printf($order->get_status());
+		}
 
 		# add paymetnt method to payment gateway list
 		add_filter("woocommerce_payment_gateways","add_payment_gateway");
