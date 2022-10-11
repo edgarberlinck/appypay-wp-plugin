@@ -36,7 +36,6 @@ Class Payment_Gateway extends WC_Payment_Gateway
 	{
 		// Creating basic resources at WP dir.
 		$this->move_checkout_file_to_themes_dir();
-		$this->move_verify_file_to_themes_dir();
 
 		$order = new WC_Order( $orderId );
 		$order->update_status('on-hold', __( 'Awaiting appypay response', 'woocommerce' ));
@@ -59,7 +58,7 @@ Class Payment_Gateway extends WC_Payment_Gateway
 			'referenceNumber' => $referenceNumber,
 			'paymentMethod' => $paymentMethod,
 			'lang' => $lang,
-			'redirectURI' => $redirectURI . '?order=' .base64_encode(serialize($order))
+			'redirectURI' => $redirectURI
 		);
 
 		return array(
@@ -82,22 +81,6 @@ Class Payment_Gateway extends WC_Payment_Gateway
 			}
 		} else {
 			error_log("appypay-checkout.php was not found in plugin directory");
-		}
-	}
-
-	public function move_verify_file_to_themes_dir()
-	{
-		$verify_file_path = __DIR__  . "/pages/appypay-verify.php";
-		$destination_file = ABSPATH . "appypay-verify.php";
-
-		$filesystem = new WP_Filesystem_Direct(false);
-
-		if ($filesystem->exists($verify_file_path) && !$filesystem->exists($destination_file)) {
-			if (!$filesystem->copy($verify_file_path, ABSPATH. "/appypay-verify.php", true)) {
-				error_log("failed to copy file from " . $verify_file_path . " to " . $current_themes_path);
-			}
-		} else {
-			error_log("appypay-verify.php was not found in plugin directory");
 		}
 	}
 
