@@ -84,6 +84,7 @@
 		add_filter( 'woocommerce_webhook_topics', 'add_new_appypay_webhook_topics' );
 
 		# Register a route to your webhook
+		# TODO: Protect the route https://medium.com/@GemmaBlack/authenticating-your-wordpress-rest-apis-84d8775a6f87
 		add_action('rest_api_init', function () {
 			register_rest_route( 'webhook/v1', 'handle-response',array(
 				'methods'  => 'POST',
@@ -98,6 +99,7 @@
 			
 			$order_factory = new WC_Order_Factory();
 			$order = $order_factory->get_order($orderId);
+			# TODO: Check if the orders actualy existis. Don't trust appypay inputs
 			if ($status) {
 				$order->payment_complete();
 			} else {
