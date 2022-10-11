@@ -85,6 +85,7 @@
 
 		# Register a route to your webhook
 		# TODO: Protect the route https://medium.com/@GemmaBlack/authenticating-your-wordpress-rest-apis-84d8775a6f87
+		# The route authentication could be 'basic' or 'API Key'
 		add_action('rest_api_init', function () {
 			register_rest_route( 'webhook/v1', 'handle-response',array(
 				'methods'  => 'POST',
