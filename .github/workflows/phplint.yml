@@ -15,10 +15,10 @@ name: Codacy Security Scan
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main" ]
+    branches: ['main']
   schedule:
     - cron: '20 14 * * 1'
 
@@ -26,21 +26,19 @@ permissions:
   contents: read
 
 jobs:
-  codacy-security-scan:
+  php-lint:
     permissions:
       contents: read # for actions/checkout to fetch code
-      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
-      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status 
     name: Codacy Security Scan
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository to the GitHub Actions runner
       - name: Checkout code
         uses: actions/checkout@v3
-          
+
       - name: Lint PHP
-      # You may pin to the exact commit or the version.
-      # uses: Firehed/lint-php-action@4e424397e74b38eae09f1cc32621c2f2a65e537a
+        # You may pin to the exact commit or the version.
+        # uses: Firehed/lint-php-action@4e424397e74b38eae09f1cc32621c2f2a65e537a
         uses: Firehed/lint-php-action@v1
         with:
           # Version of PHP
