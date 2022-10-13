@@ -15,7 +15,7 @@ return array(
 				'title' => __( 'Title*', 'woocommerce' ),
 				'type' => 'text',
 				'description' => __( 'Descrição que o usuário vê durante o checkout.', 'woocommerce' ),
-				'default' => __( 'Pagamento com Multixaixa Express', 'woocommerce' ),
+				'default' => __( 'Pagamento com Multicaixa Express', 'woocommerce' ),
 				'desc_tip' => true
 			),
 			'description' => array(
@@ -37,7 +37,7 @@ return array(
 				'type'        => 'text',
 				'desc_tip'    => true,
 				'description' => 'URL que o Widget vai nos redirecionar apoós o pagamento',
-				'default' => '/appypay-verify.php'
+				'default' => '/'
 			),
 			'testmode' => array(
 				'title' => __( 'Enable/Disable', 'woocommerce' ),
