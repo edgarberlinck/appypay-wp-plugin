@@ -23,7 +23,7 @@ Class Payment_Gateway extends WC_Payment_Gateway
 		$this->redirectTo =  get_site_url() . $this->get_option('redirect_to');
 		$this->application_id = $this->get_option('application_id');
 		$this->testmode	= $this->get_option( 'testmode' );
-
+		
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
   }
 	
@@ -58,7 +58,8 @@ Class Payment_Gateway extends WC_Payment_Gateway
 			'referenceNumber' => $referenceNumber,
 			'paymentMethod' => $paymentMethod,
 			'lang' => $lang,
-			'redirectURI' => $redirectURI
+			'redirectURI' => $redirectURI,
+			'testmode' => $this->testmode
 		);
 
 		return array(

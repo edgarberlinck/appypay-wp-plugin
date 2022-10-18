@@ -13,7 +13,12 @@
 <body> 
   <?php 
     $b64 = $_GET['data'];
-    $data = unserialize(base64_decode($b64))
+    $data = unserialize(base64_decode($b64));
+    if ($data['testmode']) {
+      $widgetUri = 'https://app-appypay-web-dev.azurewebsites.net/assets/chargesWidgetV1_2/main.js'
+    } else {
+      $widgetUri = 'https://appypay.co.ao/assets/chargesWidgetV1_2/main.js'
+    }
   ?>
   <div id="appyPay-charges-v2"></div>
 </body> 
@@ -26,6 +31,6 @@
   paymentMethod="<?=$data['paymentMethod']?>" 
   requestType="sync"
   lang="<?=$data['lang']?>"
-  src="https://app-appypay-web-dev.azurewebsites.net/assets/chargesWidgetV1_2/main.js" 
+  src="<?=$widgetUri?>" 
   redirectURI="<?=$data['redirectURI']?>"
 ></script>

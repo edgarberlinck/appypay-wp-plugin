@@ -40,7 +40,7 @@ return array(
 				'default' => '/'
 			),
 			'testmode' => array(
-				'title' => __( 'Enable/Disable', 'woocommerce' ),
+				'title' => __( 'Enable/Disable test mode', 'woocommerce' ),
 				'type' => 'checkbox',
 				'label' => __( 'Selecionar caso esteja a usar o ambiente de teste', 'Express' ),
 				'default' => 'yes'
