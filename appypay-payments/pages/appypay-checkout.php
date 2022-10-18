@@ -14,10 +14,11 @@
   <?php 
     $b64 = $_GET['data'];
     $data = unserialize(base64_decode($b64));
+    
     if ($data['testmode']) {
-      $widgetUri = 'https://app-appypay-web-dev.azurewebsites.net/assets/chargesWidgetV1_2/main.js'
+      $widgetUri = 'https://app-appypay-web-dev.azurewebsites.net/assets/chargesWidgetV1_2/main.js';
     } else {
-      $widgetUri = 'https://appypay.co.ao/assets/chargesWidgetV1_2/main.js'
+      $widgetUri = 'https://appypay.co.ao/assets/chargesWidgetV1_2/main.js';
     }
   ?>
   <div id="appyPay-charges-v2"></div>
