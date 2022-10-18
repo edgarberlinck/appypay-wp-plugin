@@ -4,7 +4,7 @@
 	 * Plugin Name: Appypay Payments
 	 * Plugin URI: https://github.com/edgarberlinck
 	 * Description: Plugin de integração ao GPO por WebFrame para WooCommerce by Appypay
-	 * Version: 1.0.0
+	 * Version: 1.0.2
 	 * Author E-mail: edgarberlinck@icloud.com
 	 * Developer: Edgar Muniz Berlinck
 	 * Text Domain: appypay-pagamentos
