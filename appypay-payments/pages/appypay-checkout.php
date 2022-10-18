@@ -15,7 +15,7 @@
     $b64 = $_GET['data'];
     $data = unserialize(base64_decode($b64));
     
-    if ($data['testmode']) {
+    if ($data['testmode'] == 'yes') {
       $widgetUri = 'https://app-appypay-web-dev.azurewebsites.net/assets/chargesWidgetV1_2/main.js';
     } else {
       $widgetUri = 'https://appypay.co.ao/assets/chargesWidgetV1_2/main.js';
